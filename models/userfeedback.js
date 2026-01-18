@@ -16,6 +16,14 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'predictionId',
         as: 'prediction',
       });
+
+      // single feedback can have a single sensory evaluation
+      UserFeedback.hasOne(models.SensoryEvaluation, {
+        foreignKey: 'feedbackId',
+        as: 'sensoryEvaluation',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
+      });
     }
   }
 
