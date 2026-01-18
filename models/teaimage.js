@@ -10,6 +10,14 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'userId',
         as: 'user',
       });
+
+      // single tea image is always associated with a single prediction
+      TeaImage.hasOne(models.Prediction, {
+        foreignKey: 'imageId',
+        as: 'prediction',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
+      });
     }
   }
 
