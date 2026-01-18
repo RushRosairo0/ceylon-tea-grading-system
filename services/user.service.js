@@ -41,6 +41,38 @@ const userService = {
       },
     };
   },
+
+  userLogin: async (data) => {
+    const { email, password } = data;
+
+    // check if user registered
+    const user = await userRepo.getByEmail(email);
+    if (!user) {
+      throw new CustomError('Invalid login credentials!', 401);
+    }
+
+    // validate password
+    const isValidPassword = await bcrypt.compare(password, user.password);
+    if (!isValidPassword) {
+      throw new CustomError('Invalid login credentials!', 401);
+    }
+
+    // user response
+    const userRes = {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      experience: user.experience,
+    };
+
+    return {
+      success: true,
+      status: 200,
+      data: {
+        user: userRes,
+      },
+    };
+  },
 };
 
 module.exports = userService;

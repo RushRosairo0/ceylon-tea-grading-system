@@ -1,5 +1,5 @@
 const errorHandler = (error, req, res, next) => {
-  const { status, statusCode, message, stack, errors = [] } = error;
+  const { statusCode, message, errors = [] } = error;
   const httpCode = statusCode || 500;
 
   const responseData = {
