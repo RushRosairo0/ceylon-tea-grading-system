@@ -5,9 +5,14 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     static associate(models) {
-      // define association here
+      // single user can have many tea images
+      User.hasMany(models.TeaImage, {
+        foreignKey: 'userId',
+        as: 'teaImages',
+      });
     }
   }
+
   User.init(
     {
       id: {
@@ -49,5 +54,6 @@ module.exports = (sequelize, DataTypes) => {
       timestamps: true,
     },
   );
+
   return User;
 };
