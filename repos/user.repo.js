@@ -14,6 +14,18 @@ const userRepo = {
     }
   },
 
+  getById: async (id) => {
+    try {
+      return await User.findOne({
+        where: {
+          id: id,
+        },
+      });
+    } catch (error) {
+      throw new CustomError(`Failed to fetch ${ENTITY} by id: ${error.message}`, 500);
+    }
+  },
+
   getByEmail: async (email) => {
     try {
       return await User.findOne({

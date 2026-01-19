@@ -8,6 +8,7 @@ require('dotenv').config({
 });
 
 const ENV = process.env.NODE_ENV || 'development';
+const HOST = process.env.HOST || '0.0.0.0';
 const PORT = process.env.PORT || 3000;
 
 const routes = require('./routes/index');
@@ -43,6 +44,6 @@ app.use('/api', routes);
 app.use(errorHandler);
 
 // start the server
-app.listen(PORT, () => {
+app.listen(PORT, HOST, () => {
   console.log(`${ENV} | ${PORT}`);
 });

@@ -15,4 +15,6 @@ userRouter.post('/login', validator(userLoginSchema), userController.login);
 // secure below endpoints
 userRouter.use(authenticate);
 
+userRouter.get('/', userController.get);
+
 module.exports = userRouter;

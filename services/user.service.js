@@ -83,6 +83,26 @@ const userService = {
       accessToken: accessToken,
     };
   },
+
+  getUserDetails: async (reqUser) => {
+    const user = await userRepo.getById(reqUser.id);
+
+    // user response
+    const userRes = {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      experience: user.experience,
+    };
+
+    return {
+      success: true,
+      status: 200,
+      data: {
+        user: userRes,
+      },
+    };
+  },
 };
 
 module.exports = userService;
