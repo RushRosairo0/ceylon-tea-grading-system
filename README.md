@@ -1,5 +1,5 @@
 <div align="center">
-  <h1="center">LeafMetric - Ceylon Tea Grading System API</h1>
+  <h1="center" style="font-size: 5em; margin: 0;">LeafMetric - Ceylon Tea Grading System API</h1>
 </div>
 
 ### LeafMetric – Ceylon Tea Grading System API is a Node.js and Express backend that powers a mobile app for intelligent tea quality assessment. It handles secure user registration and login, manages image uploads and sensory input data, and orchestrates an AI-driven pipeline to analyze tea leaves and provide actionable feedback.
