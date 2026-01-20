@@ -164,7 +164,7 @@ The following assumptions were made during the development of this project:
 
 ## Declaration
 
-- This project, including all source code and documentation, was developed by H. R. T. Rosairo (UWU/IIT/21/033) as part of the final year research project, Cylon Tea Grading System Using Multi-Scale Visual Feature Fusion.
+- This project, including all source code and documentation, was developed by **H. R. T. Rosairo (UWU/IIT/21/033)** as part of the final year research project, Cylon Tea Grading System Using Multi-Scale Visual Feature Fusion.
 - The README file and documentation were reviewed and refined using ChatGPT to ensure proper grammar, clarity, and professional English, as well as best coding practices and a clean, maintainable folder structure.
 - Online articles, tutorials, and other reliable sources were consulted to implement the backend functionality, including API design, database interactions, and business logic.
 - All core development, design decisions, and thought processes were independently concluded by the author.
@@ -172,6 +172,14 @@ The following assumptions were made during the development of this project:
 ## Documentations
 
 ## References
+
+1. [Complete Backend Course | Build and Deploy Your First Production-Ready API](https://www.youtube.com/watch?v=rOpEN1JDaD0)
+2. [How to Use Node.js for Backend Web Development?](https://www.geeksforgeeks.org/node-js/how-to-use-node-js-for-backend-web-development/)
+3. [Folder structure for a Node JS project](https://www.geeksforgeeks.org/node-js/folder-structure-for-a-node-js-project/)
+4. [How to Connect PostgreSQL® Database in Node.js](https://scalegrid.io/blog/how-to-connect-postgresql-database-in-node-js/)
+5. [How to Use PostgreSQL With Sequelize in Node.js](https://medium.com/@ahsankhaleeq10/how-to-use-postgresql-with-sequelize-in-node-js-1bed818c9f02)
+6. [Take Data Validation Seriously by Paul Milham, WildWorks](https://www.youtube.com/watch?v=bfqCQFD9L6k)
+7. [Simplified Guide to Setting Up a Global Error Handler in Express.js](https://medium.com/@mohsinansari.dev/simplified-guide-to-setting-up-a-global-error-handler-in-express-js-daf8dd640b69)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 
