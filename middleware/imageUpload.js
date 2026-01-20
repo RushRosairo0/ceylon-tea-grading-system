@@ -27,7 +27,7 @@ const uploadMiddleware = multer({
 
 const imageUpload = {
   upload: async (req, res, next) => {
-    const uploadSingle = uploadMiddleware.single('file');
+    const uploadSingle = uploadMiddleware.single('image');
 
     await new Promise((resolve, reject) => {
       uploadSingle(req, res, (err) => {

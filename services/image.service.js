@@ -2,12 +2,12 @@ const teaImageRepo = require('../repos/teamImage.repo');
 
 const imageService = {
   uploadImage: async (data) => {
-    const { destination, filename, requestUser } = data;
+    const { destination, filename, reqUser } = data;
 
     // save uploaded image details
     const imageDetails = {
       url: `${destination}${filename}`,
-      userId: requestUser.id,
+      userId: reqUser.id,
     };
     await teaImageRepo.create(imageDetails);
 

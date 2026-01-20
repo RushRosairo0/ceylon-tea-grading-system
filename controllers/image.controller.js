@@ -4,7 +4,9 @@ const imageController = {
   handle: async (req, res, next) => {
     try {
       const requestData = req.file;
-      requestData.requestUser = req.user;
+      requestData.reqUser = req.user;
+
+      console.log(requestData);
 
       const response = await imageService.uploadImage(requestData);
       const { success, status, data } = response;
