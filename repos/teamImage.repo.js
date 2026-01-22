@@ -13,6 +13,18 @@ const teaImageRepo = {
       throw new CustomError(`Failed to insert new ${ENTITY}: ${error.message}`, 500);
     }
   },
+
+  getById: async (id) => {
+    try {
+      return await TeaImage.findOne({
+        where: {
+          id: id,
+        },
+      });
+    } catch (error) {
+      throw new CustomError(`Failed to fetch ${ENTITY} by id: ${error.message}`);
+    }
+  },
 };
 
 module.exports = teaImageRepo;

@@ -154,14 +154,6 @@ The following assumptions were made during the development of this project:
   - **repos (ata access layer)**: Provides an abstraction layer for interacting with the database.
   - **database**: PostgreSQL database is used for storing and managing data.
 
-## Identified Future Enhancements
-
-- **Refresh token implementation**: Add secure token rotation mechanism with automatic refresh for extended user sessions.
-- **Rate limiting & security**: Implement IP-based rate limiting and advanced threat detection to prevent brute-force attacks.
-- **Email service integration**: Add comprehensive email verification, password reset, and security notification system.
-- **User management endpoints**: Implement secure endpoints for users to update their profile details (name, email), change their password, and reset password using OTP codes sent via email.
-- **Docker containerization**: Containerize the application with Docker for consistent deployment across environments and simplified scaling.
-
 ## Declaration
 
 - This project, including all source code and documentation, was developed by **H. R. T. Rosairo (UWU/IIT/21/033)** as part of the final year research project, Cylon Tea Grading System Using Multi-Scale Visual Feature Fusion.
