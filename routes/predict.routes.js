@@ -4,6 +4,7 @@ const predictController = require('../controllers/predict.controller');
 
 const validator = require('../middleware/requestValidator');
 const predictSchema = require('../schemas/predict/predict.schema');
+const predictSaveSchema = require('../schemas/predict/predictSave.schema');
 
 // initialize router
 const predictRouter = express.Router();
@@ -12,5 +13,6 @@ const predictRouter = express.Router();
 predictRouter.use(authenticate);
 
 predictRouter.post('/', validator(predictSchema), predictController.predict);
+predictRouter.post('/save', validator(predictSaveSchema), predictController.save);
 
 module.exports = predictRouter;

@@ -28,12 +28,16 @@ module.exports = {
         allowNull: false,
         defaultValue: teaGradeEnum.OP,
       },
+      grade_confidence: {
+        type: Sequelize.FLOAT,
+        allowNull: false,
+      },
       predicted_category: {
         type: Sequelize.ENUM(...teaCategoryEnum.values),
         allowNull: false,
         defaultValue: teaCategoryEnum.CAT1,
       },
-      confidence: {
+      category_confidence: {
         type: Sequelize.FLOAT,
         allowNull: false,
       },

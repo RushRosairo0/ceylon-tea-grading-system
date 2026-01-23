@@ -4,7 +4,10 @@ const axios = require('axios');
 const FormData = require('form-data');
 
 const teaImageRepo = require('../repos/teamImage.repo');
+const predictionRepo = require('../repos/prediction.repo');
 const CustomError = require('../util/customeError');
+
+const categoryEnum = require('../enums/categories');
 
 const FASTAPI_URL = process.env.FASTAPI_URL || 'http://localhost:8001/predict';
 
@@ -53,6 +56,8 @@ const predictService = {
           success: true,
           status: response.data.response.status,
           data: {
+            image: image.url,
+            model: response.data.response.model.version,
             grade: response.data.response.data.grade,
             gradeConfidence: response.data.response.data.grade_confidence,
             quality: response.data.response.data.quality,
@@ -68,9 +73,96 @@ const predictService = {
         };
       }
     } catch (error) {
-      throw new CustomError(error.response?.data?.response?.data?.message, error.response?.status || 500);
+      // service unavailable
+      if (error.code === 'ECONNREFUSED') {
+        throw new CustomError('Cannot connect to FastAPI server!', 503);
+      }
+
+      // fallback
+      throw new CustomError(error.response?.data?.response?.data?.message || error.message, error.response?.status || 500);
     }
   },
+
+  savePredictedResult: async (data) => {
+    const { imageId, grade, gradeConfidence, category, categoryConfidence, model, reqUser } = data;
+
+    // check image id
+    const image = await teaImageRepo.getById(imageId);
+    if (!image) {
+      throw new CustomError('Invalid image id!', 404);
+    }
+
+    // check if image belong to request user
+    if (image.userId !== reqUser.id) {
+      throw new CustomError('Permission denied!', 403);
+    }
+
+    // check if prediction already exists
+    const prediction = await predictionRepo.getByImageId(imageId);
+    if (prediction) {
+      throw new CustomError('This prediction has already been saved!');
+    }
+
+    // map category
+    const predictedCategory = await mapCategory(category);
+
+    // create new prediction
+    const predictionDetails = {
+      imageId: imageId,
+      predictedGrade: grade,
+      gradeConfidence: gradeConfidence,
+      predictedCategory: predictedCategory,
+      categoryConfidence: categoryConfidence,
+      modelVersion: model,
+    };
+    const newPrediction = await predictionRepo.create(predictionDetails);
+
+    // prediction response
+    const predictionRes = {
+      id: newPrediction.id,
+      imageId: newPrediction.imageId,
+      predictedGrade: newPrediction.predictedGrade,
+      gradeConfidence: newPrediction.gradeConfidence,
+      predictedCategory: category,
+      categoryConfidence: newPrediction.categoryConfidence,
+      modelVersion: newPrediction.modelVersion,
+    };
+
+    return {
+      success: true,
+      status: 201,
+      data: {
+        prediction: predictionRes,
+      },
+    };
+  },
 };
+
+async function mapCategory(category) {
+  switch (category) {
+    case 1:
+      return categoryEnum.CAT1;
+    case 2:
+      return categoryEnum.CAT2;
+    case 3:
+      return categoryEnum.CAT3;
+    case 4:
+      return categoryEnum.CAT4;
+    case 5:
+      return categoryEnum.CAT5;
+    case 6:
+      return categoryEnum.CAT6;
+    case 7:
+      return categoryEnum.CAT7;
+    case 8:
+      return categoryEnum.CAT8;
+    case 9:
+      return categoryEnum.CAT9;
+    case 10:
+      return categoryEnum.CAT10;
+    default:
+      throw new CustomError(`Invalid category ${category}`);
+  }
+}
 
 module.exports = predictService;

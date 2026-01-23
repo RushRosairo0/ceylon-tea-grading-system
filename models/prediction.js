@@ -42,16 +42,21 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: teaGradeEnum.OP,
         field: 'predicted_grade',
       },
+      gradeConfidence: {
+        type: DataTypes.FLOAT,
+        allowNull: false,
+        field: 'grade_confidence',
+      },
       predictedCategory: {
         type: DataTypes.ENUM(...teaCategoryEnum.values),
         allowNull: false,
         defaultValue: teaCategoryEnum.CAT1,
         field: 'predicted_category',
       },
-      confidence: {
+      categoryConfidence: {
         type: DataTypes.FLOAT,
         allowNull: false,
-        field: 'confidence',
+        field: 'category_confidence',
       },
       modelVersion: {
         type: DataTypes.STRING,
