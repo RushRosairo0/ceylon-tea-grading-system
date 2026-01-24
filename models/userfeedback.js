@@ -1,6 +1,7 @@
 'use strict';
 
 const { Model } = require('sequelize');
+const teaGradeEnum = require('../enums/grades');
 
 module.exports = (sequelize, DataTypes) => {
   class UserFeedback extends Model {
@@ -49,6 +50,12 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.BOOLEAN,
         allowNull: false,
         field: 'is_agreed',
+      },
+      grade: {
+        type: DataTypes.ENUM(...teaGradeEnum.values),
+        allowNull: false,
+        defaultValue: teaGradeEnum.OP,
+        field: 'grade',
       },
       comment: {
         type: DataTypes.TEXT,

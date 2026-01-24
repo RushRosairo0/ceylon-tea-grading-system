@@ -57,11 +57,12 @@ const predictService = {
           status: response.data.response.status,
           data: {
             image: image.url,
+            imageId: image.id,
             model: response.data.response.model.version,
             grade: response.data.response.data.grade,
             gradeConfidence: response.data.response.data.grade_confidence,
-            quality: response.data.response.data.quality,
-            qualityConfidence: response.data.response.data.quality_confidence,
+            category: response.data.response.data.quality,
+            categoryConfidence: response.data.response.data.quality_confidence,
           },
         };
       } else {
@@ -100,7 +101,7 @@ const predictService = {
     // check if prediction already exists
     const prediction = await predictionRepo.getByImageId(imageId);
     if (prediction) {
-      throw new CustomError('This prediction has already been saved!');
+      throw new CustomError('This prediction has already been saved!', 409);
     }
 
     // map category
@@ -161,7 +162,7 @@ async function mapCategory(category) {
     case 10:
       return categoryEnum.CAT10;
     default:
-      throw new CustomError(`Invalid category ${category}`);
+      throw new CustomError(`Invalid category ${category}`, 404);
   }
 }
 

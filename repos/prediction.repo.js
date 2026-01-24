@@ -10,7 +10,23 @@ const predictionRepo = {
     try {
       return await Prediction.create(prediction);
     } catch (error) {
-      throw new CustomError(`Failed to insert new ${ENTITY}: ${error.message}`);
+      throw new CustomError(`Failed to insert new ${ENTITY}: ${error.message}`, 500);
+    }
+  },
+
+  getById: async (id) => {
+    try {
+      return await Prediction.findOne({
+        where: { id },
+        include: [
+          {
+            model: Prediction.sequelize.models.TeaImage,
+            as: 'image',
+          },
+        ],
+      });
+    } catch (error) {
+      throw new CustomError(`Failed to fetch ${ENTITY} by id: ${error.message}`, 500);
     }
   },
 
@@ -22,7 +38,7 @@ const predictionRepo = {
         },
       });
     } catch (error) {
-      throw new CustomError(`Failed to fetch ${ENTITY} by image id: ${error.message}`);
+      throw new CustomError(`Failed to fetch ${ENTITY} by image id: ${error.message}`, 500);
     }
   },
 };

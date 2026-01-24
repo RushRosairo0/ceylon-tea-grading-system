@@ -1,11 +1,11 @@
 const { z } = require('zod');
 
-const gradeEnum = require('../../enums/grades');
+const teaGradeEnum = require('../../enums/grades');
 
 const predictSaveSchema = z.object({
   body: z.object({
-    imageId: z.int().min(1, 'imageId is required'),
-    grade: z.enum([...gradeEnum.values], {
+    imageId: z.int().min(1, 'Image ID is required'),
+    grade: z.enum([...teaGradeEnum.values], {
       required_error: 'Prediction grade is required',
       invalid_type_error: 'Prediction grade must be a valid grade',
     }),

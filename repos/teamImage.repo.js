@@ -22,7 +22,7 @@ const teaImageRepo = {
         },
       });
     } catch (error) {
-      throw new CustomError(`Failed to fetch ${ENTITY} by id: ${error.message}`);
+      throw new CustomError(`Failed to fetch ${ENTITY} by id: ${error.message}`, 500);
     }
   },
 };

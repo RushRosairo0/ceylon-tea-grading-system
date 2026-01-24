@@ -1,6 +1,7 @@
 'use strict';
 
 /** @type {import('sequelize-cli').Migration} */
+const teaGradeEnum = require('../enums/grades');
 
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -35,6 +36,11 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         allowNull: false,
       },
+      grade: {
+        type: Sequelize.ENUM(...teaGradeEnum.values),
+        allowNull: false,
+        defaultValue: teaGradeEnum.OP,
+      },
       comment: {
         type: Sequelize.TEXT,
         allowNull: true,
@@ -61,5 +67,6 @@ module.exports = {
 
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('user_feedbacks');
+    await queryInterface.sequelize.query('DROP TYPE IF EXISTS "enum_user_feedbacks_grade";');
   },
 };
