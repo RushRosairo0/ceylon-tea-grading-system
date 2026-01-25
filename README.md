@@ -70,6 +70,10 @@
    ```bash
    npm run migrate
    ```
+3. Start the server
+   ```bash
+   npm run start
+   ```
 
 ### Other scripts
 
