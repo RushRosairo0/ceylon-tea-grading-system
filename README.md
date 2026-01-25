@@ -55,6 +55,9 @@
 
    ## jwt secret
    ACCESS_TOKEN_SECRET=<randomly generated secure string>
+
+   ## prediction pipeline url
+   FASTAPI_URL=<prediction API URL>
    ```
 
 ### Start the project using terminal
