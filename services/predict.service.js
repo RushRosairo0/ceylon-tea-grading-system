@@ -70,7 +70,9 @@ const predictService = {
         return {
           success: false,
           status: response.data.response?.status || 400,
-          message: response.data.response?.data?.message || 'Prediction failed',
+          data: {
+            message: response.data.response?.data?.message || 'Prediction failed',
+          },
         };
       }
     } catch (error) {

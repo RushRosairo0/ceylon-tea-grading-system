@@ -15,7 +15,7 @@ const feedbackService = {
     }
 
     // check if predction belong to request user
-    if (prediction.image.userId !== reqUser.id) {
+    if (prediction.image.userId !== userId) {
       throw new CustomError('Permission denied!', 403);
     }
 
@@ -28,7 +28,7 @@ const feedbackService = {
     // create new feedback
     const feedbackDetails = {
       predictionId: prediction.id,
-      userId: reqUser.id,
+      userId: userId,
       isAgreed: isAgreed,
       grade: grade,
       comment: comment,

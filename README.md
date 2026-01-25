@@ -79,7 +79,7 @@
    npm run migrate:down:all
    ```
 
-## Assumptions
+<!-- ## Assumptions
 
 The following assumptions were made during the development of this project:
 
@@ -152,7 +152,7 @@ The following assumptions were made during the development of this project:
   - **controllers**: Handles incoming requests and delegates business logic to services.
   - **services**: Contains the core business logic and operations.
   - **repos (ata access layer)**: Provides an abstraction layer for interacting with the database.
-  - **database**: PostgreSQL database is used for storing and managing data.
+  - **database**: PostgreSQL database is used for storing and managing data. -->
 
 ## Declaration
 
